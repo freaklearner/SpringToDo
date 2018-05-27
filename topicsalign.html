@@ -1,0 +1,88 @@
+<!Doctype html>
+<html>
+<head>
+  <title>To-Do</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+    crossorigin="anonymous">
+  </script>
+
+</head>
+<body>
+    <div class="col-lg-4 col-lg-offset-4 col-md-12 outer">
+      <div class="row inner-1">
+        <div class="col-lg-12">
+          <form name="addTopic">
+            <table  width="100%">
+              <tr>
+                <td style="padding:5px">
+                  <input type="text" class="form-control form-control-lg" placeholder="Enter To-Do"/>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:5px">
+                  <input type="button" value="ADD" onclick="add();" class="btn btn-primary btn-sm btn-block"/>
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+      <div id="context" class="row inner-2">
+
+      </div>
+
+    </div>
+<script>
+  function add(){
+    var str = document.forms["addTopic"].elements[0].value;
+    if(str.length>0){
+        document.getElementById("context").appendChild(create(str));
+        document.forms["addTopic"].elements[0].value = "";
+    }
+  }
+
+  function create(str){
+    var div = document.createElement("div");
+    var text = document.createTextNode(str);
+    var span = document.createElement("span");
+    span.style.cursor="pointer";
+    span.setAttribute("name","SPAN Icon");
+    span.setAttribute("onclick","deleteElement(this);");
+    span.setAttribute("class","glyphicon glyphicon-remove-sign");
+    var table = document.createElement("table");
+    var tr = document.createElement("tr");
+    var td1 = document.createElement("td");
+    var td2 = document.createElement("td");
+    td2.setAttribute("align","right");
+    td1.appendChild(text);
+    td2.appendChild(span);
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    table.appendChild(tr);
+    table.setAttribute("width","100%");
+    div.appendChild(table);
+    div.setAttribute("class","element");
+    return div;
+  }
+  function deleteElement(span){
+    var td = span.parentNode;
+    var tr = td.parentNode;
+    var table = tr.parentNode;
+    var div = table.parentNode;
+    var out = div.parentNode;
+    out.removeChild(div);
+  }
+</script>
+</body>
+</html>

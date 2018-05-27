@@ -1,0 +1,17 @@
+.outer{
+  margin-top:30px;
+  border:1px solid gray;
+  height:500px;
+  border-radius: 5px
+}
+
+.inner-1{
+  margin-top: 10px;
+}
+
+.element{
+  border-radius: 2px;
+  border: 1px solid #cccccc;
+  margin: 10px;
+  padding: 5px;
+}
